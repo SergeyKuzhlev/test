@@ -5,454 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ООО АРЕКО - Шины для любого транспорта</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Общие стили */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        h1, h2, h3 {
-            margin-bottom: 15px;
-            color: #1a3a6c;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Анимированный фон */
-        .animated-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(26, 58, 108, 0.1);
-            animation: float 15s infinite linear;
-        }
-
-        .circle:nth-child(1) {
-            width: 150px;
-            height: 150px;
-            top: 10%;
-            left: 10%;
-            animation-duration: 20s;
-        }
-
-        .circle:nth-child(2) {
-            width: 100px;
-            height: 100px;
-            top: 70%;
-            left: 80%;
-            animation-duration: 15s;
-            animation-delay: 1s;
-        }
-
-        .circle:nth-child(3) {
-            width: 200px;
-            height: 200px;
-            top: 30%;
-            left: 70%;
-            animation-duration: 25s;
-            animation-delay: 0.5s;
-        }
-
-        .circle:nth-child(4) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            left: 15%;
-            animation-duration: 18s;
-            animation-delay: 2s;
-        }
-
-        .circle:nth-child(5) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 50%;
-            animation-duration: 12s;
-            animation-delay: 1.5s;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* Шапка сайта */
-        .header {
-            background-color: rgba(26, 58, 108, 0.9);
-            color: white;
-            padding: 11px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo a {
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .nav {
-            display: flex;
-        }
-
-        .nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav ul li {
-            margin-left: 25px;
-        }
-
-        .nav ul li a {
-            color: white;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav ul li a:hover {
-            color: #ffd700;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 30px;
-            height: 25px;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            height: 3px;
-            width: 100%;
-            background-color: #fff;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        /* Герой-секция */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 150px 0 100px;
-            margin-top: 60px;
-        }
-
-        .hero h1 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #e74c3c;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #c0392b;
-        }
-
-        /* Секция "О нас" */
-        .about {
-            padding: 60px 0;
-            background-color: white;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        /* Секция услуг */
-        .services {
-            padding: 60px 0;
-            background-color: #f5f5f5;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f8f9fa;
-            border-radius: 50%;
-            color: #1a3a6c;
-            font-size: 32px;
-            border: 2px solid #1a3a6c;
-        }
-
-        .service-card h3 {
-            text-transform: uppercase;
-            font-size: 1.2rem;
-        }
-
-        .service-card p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        /* Секция контактов */
-        .contact {
-            padding: 60px 0;
-            background-color: white;
-        }
-
-        .contact-content {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .contact-info p {
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-
-        .contact-icon {
-            margin-right: 10px;
-            color: #1a3a6c;
-            width: 20px;
-            text-align: center;
-        }
-
-        .phone-link {
-            color: #1a3a6c;
-            font-weight: bold;
-            display: inline-block;
-            padding: 5px 0;
-        }
-
-        /* Подвал сайта */
-        .footer {
-            background-color: #1a3a6c;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.9rem;
-        }
-
-        /* Адаптивность для мобильных */
-        @media (max-width: 768px) {
-            .header .container {
-                padding: 0 10px;
-            }
-            
-            .logo a {
-                font-size: 18px;
-            }
-            
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .nav {
-                position: fixed;
-                top: 60px;
-                left: -100%;
-                width: 80%;
-                height: calc(100vh - 60px);
-                background-color: rgba(26, 58, 108, 0.98);
-                flex-direction: column;
-                transition: left 0.3s ease;
-                padding: 20px 0;
-            }
-            
-            .nav.active {
-                left: 0;
-            }
-            
-            .nav ul {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .nav ul li {
-                margin: 0;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .nav ul li a {
-                display: block;
-                padding: 15px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            
-            .hero {
-                padding: 120px 0 80px;
-                margin-top: 60px;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-                padding: 0 10px;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            
-            .about, .services, .contact {
-                padding: 40px 0;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-                text-align: center;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .service-card {
-                padding: 15px;
-            }
-            
-            .service-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 28px;
-            }
-            
-            .contact-info p {
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-            
-            .hero p {
-                font-size: 0.9rem;
-            }
-            
-            .service-card h3 {
-                font-size: 1.1rem;
-            }
-            
-            .service-card p {
-                font-size: 0.9rem;
-            }
-            
-            .contact-info p {
-                font-size: 0.9rem;
-            }
-            
-            .footer {
-                padding: 15px 0;
-                font-size: 0.8rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Анимированный фон -->
@@ -470,12 +23,7 @@
             <div class="logo">
                 <a href="#home">ООО АРЕКО</a>
             </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav class="nav" id="main-nav">
+            <nav class="nav">
                 <ul>
                     <li><a href="#home">Главная</a></li>
                     <li><a href="#about">О нас</a></li>
@@ -492,7 +40,7 @@
         <section id="home" class="hero">
             <div class="container">
                 <h1>Шины для любого транспорта</h1>
-                <p>Качественные шины по доступным ценам с доставкой по Красноярску и краю</p>
+                <p>Качественные шины по доступным ценам с доставкой по РФ</p>
                 <a href="#contact" class="btn">Связаться с нами</a>
             </div>
         </section>
@@ -511,34 +59,34 @@
         </section>
 
         <!-- Секция услуг с id="services" -->
-        <section id="services" class="services">
-            <div class="container">
-                <h2>Наши услуги</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-car"></i>
-                        </div>
-                        <h3>Легковые шины</h3>
-                        <p>Шины для легковых автомобилей всех классов: летние, зимние и всесезонные. Широкий выбор размеров и производителей.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-truck"></i>
-                        </div>
-                        <h3>Грузовые шины</h3>
-                        <p>Шины для грузового транспорта: для междугородних перевозок, строительной техники и специального назначения.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-tractor"></i>
-                        </div>
-                        <h3>Шины для спецтехники</h3>
-                        <p>Шины для сельскохозяйственной, строительной и другой спецтехники. Высокая износостойкость и надежность.</p>
-                    </div>
+<section id="services" class="services">
+    <div class="container">
+        <h2>Наши услуги</h2>
+        <div class="services-grid">
+            <a href="passenger_cars.html" class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-car"></i>
                 </div>
-            </div>
-        </section>
+                <h3>Легковые шины</h3>
+                <p>Шины для легковых автомобилей всех классов: летние, зимние и всесезонные. Широкий выбор размеров и производителей.</p>
+            </a>
+            <a href="cargo.html" class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>Грузовые шины</h3>
+                <p>Шины для грузового транспорта: для междугородних перевозок, строительной техники и специального назначения.</p>
+            </a>
+            <a href="special_equipment.html" class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <h3>Шины для спецтехники</h3>
+                <p>Шины для сельскохозяйственной, строительной и другой спецтехники. Высокая износостойкость и надежность.</p>
+            </a>
+        </div>
+    </div>
+</section>
 
         <!-- Секция контактов с id="contact" -->
         <section id="contact" class="contact">
@@ -546,7 +94,7 @@
                 <h2>Контакты</h2>
                 <div class="contact-content">
                     <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt contact-icon"></i> <strong>Адрес:</strong> Проспект имени газеты Красноярский Рабочий 150 стр. 46, Красноярск</p>
+                        <p><i class="fas fa-map-marker-alt contact-icon"></i> <strong>Адрес:</strong> Проспект имени газеты Красноярский Рабочий 150 стр. 46, Офис 1, г. Красноярск</p>
                         <p><i class="fas fa-phone contact-icon"></i> <strong>Телефоны:</strong></p>
                         <p><a href="tel:+79131950860" class="phone-link">+7 913 195-08-60</a></p>
                         <p><a href="tel:+79233637300" class="phone-link">+7 923 363-73-00</a></p>
@@ -564,41 +112,6 @@
     </footer>
 
     <!-- Подключение JavaScript -->
-    <script>
-        // Мобильное меню
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mainNav = document.getElementById('main-nav');
-        
-        mobileMenu.addEventListener('click', function() {
-            mainNav.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
-        
-        // Закрытие меню при клике на ссылку
-        document.querySelectorAll('.nav a').forEach(link => {
-            link.addEventListener('click', function() {
-                mainNav.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            });
-        });
-        
-        // Плавная прокрутка
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
